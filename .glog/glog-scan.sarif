@@ -10,7 +10,206 @@
           "version": "1.0.0",
           "semanticVersion": "1.0.0",
           "informationUri": "https://www.glog.ai",
-          "rules": [],
+          "rules": [
+            {
+              "id": "16db2978-8a51-3ac0-97cc-2f4fd73a2e11",
+              "name": "Prototype Pollution Vulnerability Detected",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\nPrototype Pollution is a vulnerability that occurs when the properties of JavaScript's `Object.prototype` are modified. The properties of `Object.prototype` are accessible by all objects. Therefore, the modification of this object can influence the behaviour of all objects. \n\nIn the provided code, the vulnerability may occur if the variables `g`, `h`, `l`, `m`, `q`, `p`, `v`, `t`, `y` are controlled by the user or can be manipulated in a way that leads to an unintended modification of a prototype.\n\n## Mitigation Advice\n\nTo mitigate this vulnerability, avoid directly assigning user-controlled input to object properties. Always validate and sanitize user input before using it in your application. \n\n## Source Code Fix Recommendation\n\nWithout the full context of the code, it's hard to provide a specific fix. However, a general recommendation would be to validate and sanitize the variables `g`, `h`, `l`, `m`, `q`, `p`, `v`, `t`, `y` before using them to manipulate object properties.\n\n## Library Dependencies\n\nThe provided code does not seem to have any explicit library dependencies.\n\n## References\n\n- [CWE-250: Execution with Unnecessary Privileges](https://cwe.mitre.org/data/definitions/250.html)\n\nPlease note that the links provided are active and accessible to anonymous users at the time of writing this report."
+              },
+              "properties": {
+                "cwe": [
+                  {
+                    "id": "CWE-250",
+                    "url": "https://cwe.mitre.org/data/definitions/250.html"
+                  }
+                ],
+                "severity": "MEDIUM",
+                "kind": "FAIL",
+                "tags": [
+                  "CWE-250"
+                ]
+              }
+            },
+            {
+              "id": "06a2b8e7-0f15-3a27-a4b3-ef1098aed34c",
+              "name": "Prototype Pollution Vulnerability Detected",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\nPrototype Pollution is a vulnerability that occurs when the properties of JavaScript object prototypes are manipulated. This can lead to the addition or modification of existing properties that could lead to significant changes in the application's behavior. In JavaScript, all objects inherit properties and methods from a prototype. If an attacker can control these properties, they can potentially execute arbitrary code, leading to a variety of impacts such as Denial of Service (DoS), Remote Code Execution (RCE), or even property injection.\n\nThe provided code snippet seems to be a part of a larger codebase and it's hard to identify the exact vulnerability without the full context. However, if the properties of `a`, `b`, `c`, `d`, `e`, `f` are not properly validated or sanitized, it could lead to Prototype Pollution.\n\n## Mitigation\n\nTo mitigate Prototype Pollution vulnerabilities, follow these general recommendations:\n\n1. Always validate user input: This is the most effective way to prevent Prototype Pollution. Ensure that all user inputs are validated and sanitized before they are processed.\n\n2. Use the `Object.freeze()` method: This method can be used to prevent new properties from being added to an object.\n\n3. Use Map instead of Object: JavaScript Map is a better key-value data structure that doesn't suffer from Prototype Pollution.\n\n4. Update and patch: Always keep your JavaScript libraries up-to-date and apply patches whenever they are available.\n\n## Code Fix\n\nWithout the full context, it's hard to provide a specific code fix. However, here is a general way to prevent Prototype Pollution:\n\n```javascript\nif (typeof object[key] === 'object' && object[key] !== null) {\n  // Ensure that the key is not a prototype property\n  if (!Object.prototype.hasOwnProperty.call(object, key)) {\n    return;\n  }\n  // Recursive call\n  deepFreeze(object[key]);\n} else {\n  Object.freeze(object[key]);\n}\n```\n\n## Dependencies\n\nThe code snippet seems to be using jQuery, but without the full context, it's hard to identify all the dependencies.\n\n## References\n\n- [CWE-250: Execution with Unnecessary Privileges](https://cwe.mitre.org/data/definitions/250.html)"
+              },
+              "properties": {
+                "cwe": [
+                  {
+                    "id": "CWE-250",
+                    "url": "https://cwe.mitre.org/data/definitions/250.html"
+                  }
+                ],
+                "severity": "MEDIUM",
+                "kind": "FAIL",
+                "tags": [
+                  "CWE-250"
+                ]
+              }
+            },
+            {
+              "id": "0a72bba4-d6ef-322a-904d-81a32b8d18ef",
+              "name": "Prototype Pollution Vulnerability Detected",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\nPrototype Pollution is a vulnerability that occurs when the properties of JavaScript's object prototype are manipulated. The prototype is an object that is associated with every function and object by default in JavaScript, which can be quite powerful if left unchecked. If a malicious user manipulates these properties, they can potentially crash an application or even execute arbitrary code.\n\nIn the provided code, the vulnerability is not directly visible. However, if this code is part of a larger codebase where user input is directly used to access object properties (e.g., `a[b]`), it could potentially lead to Prototype Pollution if the user input is not properly sanitized.\n\n## Mitigation Advice\n\nTo mitigate Prototype Pollution vulnerabilities, follow these general guidelines:\n\n- Always validate user input: This is the first line of defense against many types of vulnerabilities. Ensure that user input is what you expect it to be and sanitize it to remove any potentially harmful data.\n- Use `Object.create(null)`: This creates an object that does not have a prototype, thus removing the risk of Prototype Pollution.\n- Use `Map` instead of plain objects: The `Map` data structure in JavaScript does not have a prototype, so it is not susceptible to Prototype Pollution.\n\n## Source Code Fix Recommendation\n\nWithout the full context of the code, it's hard to provide a specific fix. However, if `a[b]` is using user input, you should sanitize the input before using it. Here's a simple example of how you might do this:\n\n```javascript\n// Assuming `input` is the user input\nlet sanitizedInput = sanitize(input); // Implement this function\na = a[sanitizedInput];\n```\n\n## Library Dependencies\n\nThe provided code does not appear to have any specific library dependencies.\n\n## References\n\n- [CWE-250: Execution with Unnecessary Privileges](https://cwe.mitre.org/data/definitions/250.html)\n\nPlease note that the links were active and accessible at the time of writing this report."
+              },
+              "properties": {
+                "cwe": [
+                  {
+                    "id": "CWE-250",
+                    "url": "https://cwe.mitre.org/data/definitions/250.html"
+                  }
+                ],
+                "severity": "MEDIUM",
+                "kind": "FAIL",
+                "tags": [
+                  "CWE-250"
+                ]
+              }
+            },
+            {
+              "id": "48ec6ae2-8495-36e6-91df-f8ed2d5fb27b",
+              "name": "\"XSS Vulnerabilities from User-Controlled Data in Methods like `innerHTML`, `outerHTML`, or `document.write`\"",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\nCross-Site Scripting (XSS) vulnerabilities occur when an application includes untrusted data in a new web page without proper validation or escaping, or updates an existing web page with user-supplied data using a browser API that can create HTML or JavaScript. XSS allows attackers to execute scripts in the victim's browser which can hijack user sessions, deface web sites, or redirect the user to malicious sites.\n\nIn this specific case, the vulnerability arises from the use of methods like `innerHTML`, `outerHTML`, or `document.write` which are used to write data into HTML documents. If the data being written is user-controlled and not properly sanitized, it can lead to XSS attacks.\n\n## Mitigation Advice\n\nTo mitigate XSS vulnerabilities, you should:\n\n- Use frameworks that automatically escape XSS by design, such as Ruby on Rails, React JS, etc.\n- Escape untrusted HTTP request data based on the context in the HTML output (body, attribute, JavaScript, CSS, or URL) will resolve Reflected and Stored XSS vulnerabilities.\n- Apply context-sensitive encoding when modifying the browser document on the client side acts against DOM XSS.\n\n## Source Code Fix Recommendation\n\nIn the provided code snippet, the vulnerability arises from the use of `innerHTML` to insert user-controlled data into the HTML document. This can be fixed by sanitizing the user input before inserting it into the document. Here's how you can do it:\n\n```javascript\nvar h = \"script\" + (new Date).getTime();\nvar sanitizedH = h.replace(/</g, \"&lt;\").replace(/>/g, \"&gt;\");\ng.innerHTML = \"<a name='\" + sanitizedH + \"'/>\";\n```\n\nIn this code, we're replacing any instances of `<` and `>` in the user input with their HTML encoded equivalents. This prevents any HTML tags in the user input from being interpreted as actual HTML.\n\n## Library Dependencies\n\nThe provided code snippet does not appear to have any library dependencies.\n\n## References\n\n- [OWASP XSS Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html)\n- [CWE-79: Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')](https://cwe.mitre.org/data/definitions/79.html)"
+              },
+              "properties": {
+                "cwe": [
+                  {
+                    "id": "CWE-79",
+                    "url": "https://cwe.mitre.org/data/definitions/79.html"
+                  }
+                ],
+                "severity": "MEDIUM",
+                "kind": "FAIL",
+                "tags": [
+                  "CWE-79"
+                ]
+              }
+            },
+            {
+              "id": "4bda5f47-cdfa-3949-bcc5-2c7085afd3c2",
+              "name": "\"XSS Vulnerabilities from User-Controlled Data in innerHTML, outerHTML, and document.write Methods\"",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\nCross-Site Scripting (XSS) vulnerabilities occur when an application includes untrusted data in a new web page without proper validation or escaping, or updates an existing web page with user-supplied data using a browser API that can create HTML or JavaScript. XSS allows attackers to execute scripts in the victim's browser which can hijack user sessions, deface web sites, or redirect the user to malicious sites.\n\nIn this specific case, the vulnerability arises from user-controlled data in `innerHTML`, `outerHTML`, and `document.write` methods in JavaScript. These methods are used to manipulate the HTML content of an element on a webpage. If user input is directly used in these methods without proper sanitization, it can lead to XSS attacks.\n\n## Mitigation Advice\n\nTo mitigate this vulnerability, you should:\n\n1. **Escape User Input**: Always escape user-controlled data before using it in HTML context. This can be done using functions like `encodeURI` or `encodeURIComponent`.\n\n2. **Use Safe APIs**: Use safe APIs that automatically escape user-controlled data, such as `textContent` or `createTextNode`.\n\n3. **Content Security Policy (CSP)**: Implement a Content Security Policy (CSP) to mitigate the impact of any potential XSS vulnerabilities.\n\n## Source Code Fix Recommendation\n\nReplace the use of `innerHTML` with `textContent` or `createTextNode` to safely insert user-controlled data into the DOM. For example:\n\n```javascript\n// Instead of this:\nelement.innerHTML = userControlledData;\n\n// Do this:\nelement.textContent = userControlledData;\n\n// Or this:\nelement.appendChild(document.createTextNode(userControlledData));\n```\n\n## Library Dependencies\n\nThe code example seems to be using the jQuery library.\n\n## References\n\n- [OWASP XSS Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html)\n- [OWASP DOM based XSS Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/DOM_based_XSS_Prevention_Cheat_Sheet.html)\n- [CWE-79: Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')](https://cwe.mitre.org/data/definitions/79.html)"
+              },
+              "properties": {
+                "cwe": [
+                  {
+                    "id": "CWE-79",
+                    "url": "https://cwe.mitre.org/data/definitions/79.html"
+                  }
+                ],
+                "severity": "MEDIUM",
+                "kind": "FAIL",
+                "tags": [
+                  "CWE-79"
+                ]
+              }
+            },
+            {
+              "id": "247aab2c-0fc5-3129-8b76-73e809e49c74",
+              "name": "Potential ReDoS vulnerability due to RegExp() being called with a `b` function argument in your application. Consider using hardcoded regexes, input validation, or a regex checking/sanitization library like 'recheck'.",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\nThe code snippet provided is vulnerable to a Regular Expression Denial of Service (ReDoS) attack. This vulnerability occurs when the `RegExp()` function is called with a `b` function argument. An attacker can exploit this vulnerability by providing a specially crafted input that causes the regular expression engine to consume excessive resources, leading to a denial of service.\n\n## Mitigation Advice\n\nTo mitigate this vulnerability, consider the following:\n\n1. **Hardcoded Regexes**: Instead of dynamically creating regular expressions, use hardcoded regular expressions whenever possible. This reduces the risk of an attacker being able to control the regular expression pattern.\n\n2. **Input Validation**: Validate user input before passing it to the `RegExp()` function. This can help ensure that the input does not contain any malicious patterns.\n\n3. **Regex Checking/Sanitization Library**: Use a library like 'recheck' to check and sanitize regular expressions. This can help prevent malicious patterns from being passed to the `RegExp()` function.\n\n## Source Code Fix Recommendation\n\nConsider replacing the dynamic regular expression with a hardcoded one, and validate the input `b` before passing it to the `RegExp()` function. Here's an example of how you might do this:\n\n```javascript\nvar g = new RegExp(\"^\" + b.replace(/[-[\\]{}()*+?.,\\\\^$|#\\s]/g, \"\\\\$&\") + \"$\", \"i\");\n```\n\nIn this example, the `b` input is sanitized before it's passed to the `RegExp()` function, reducing the risk of a ReDoS attack.\n\n## Library Dependencies\n\nThe code snippet provided requires the following library dependencies:\n\n- jQuery\n- jQuery UI\n\n## OWASP and CWE Resources\n\n- [CWE-400: Uncontrolled Resource Consumption](https://cwe.mitre.org/data/definitions/400.html)\n\nPlease note that these links are subject to change and may not always be accessible."
+              },
+              "properties": {
+                "cwe": [
+                  {
+                    "id": "CWE-400",
+                    "url": "https://cwe.mitre.org/data/definitions/400.html"
+                  }
+                ],
+                "severity": "MEDIUM",
+                "kind": "FAIL",
+                "tags": [
+                  "CWE-400"
+                ]
+              }
+            },
+            {
+              "id": "1732df8d-5d3d-38ff-ba0d-1c5460c0c486",
+              "name": "Potential Code Injection Vulnerability Detected through eval() Use",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\nThe code snippet provided has a potential code injection vulnerability due to the use of the `eval()` function. The `eval()` function in JavaScript is used to evaluate a string of JavaScript code in the context of the script. If a malicious user can control the input to `eval()`, they can run arbitrary code in the user's browser, leading to a variety of attacks such as Cross-Site Scripting (XSS) or Remote Code Execution (RCE).\n\n## Mitigation Advice\n\nAvoid using `eval()` whenever possible. If you must use it, ensure that the input is properly sanitized and validated to prevent malicious code from being executed. \n\n## Source Code Fix Recommendation\n\nReplace the `eval()` function with safer alternatives such as `JSON.parse()`. Here is a recommended fix for the specific vulnerability sink:\n\n```javascript\nsetDefaults:function(a){H(this._defaults,a||{});return this},_attachDatepicker:function(a,b){var c=null;for(var e in this._defaults){var f=a.getAttribute(\"date:\"+e);if(f){c=c||{};try{c[e]=JSON.parse(f)}catch(h){c[e]=f}}}e=a.nodeName.toLowerCase();f=e==\"div\"||e==\"span\";if(!a.id){this.uuid+=1;a.id=\"dp\"+this.uuid}var i=this._newInst(d(a),f);i.settings=d.extend({},b||{},c||{});if(e==\"input\")this._connectDatepicker(a,i);else f&&this._inlineDatepicker(a,i)},_newInst:function(a,b){return{id:a[0].id.replace(/([^A-Za-z0-9_-])/g,\n```\n\n## Library Dependencies\n\nThe code snippet appears to be using jQuery, as indicated by the use of the `d.extend()` function, which is a jQuery method for merging the contents of two or more objects together into the first object.\n\n## References\n\n- [CWE-94: Improper Control of Generation of Code ('Code Injection')](https://cwe.mitre.org/data/definitions/94.html)"
+              },
+              "properties": {
+                "cwe": [
+                  {
+                    "id": "CWE-94",
+                    "url": "https://cwe.mitre.org/data/definitions/94.html"
+                  }
+                ],
+                "severity": "MEDIUM",
+                "kind": "FAIL",
+                "tags": [
+                  "CWE-94"
+                ]
+              }
+            },
+            {
+              "id": "8747c260-7a81-3ea9-bcae-53f703eca111",
+              "name": "Potential Code Injection Vulnerability Detected through eval() Use",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\nThe `eval()` function in JavaScript is a powerful feature that allows the execution of arbitrary JavaScript code. However, it is also a potential security risk, as it can lead to code injection vulnerabilities if not used properly. In the provided code snippet, the `eval()` function is used to parse a string (`text`) into a JavaScript object. If an attacker can control the content of `text`, they can inject arbitrary JavaScript code, which will be executed when the `eval()` function is called.\n\n## Mitigation Advice\n\nAvoid using `eval()` whenever possible. There are usually safer alternatives for the tasks where `eval()` might be used. If you need to parse a JSON string, use `JSON.parse()` instead. This function only parses JSON-formatted strings, so it is not possible to inject arbitrary JavaScript code.\n\n## Source Code Fix Recommendation\n\nReplace the `eval()` function with `JSON.parse()`:\n\n```javascript\nresponse = JSON.parse(text);\n```\n\nThis code will throw an error if `text` is not a valid JSON string, so you might want to use a `try-catch` block to handle potential errors:\n\n```javascript\ntry {\n    response = JSON.parse(text);\n} catch (error) {\n    console.error('Invalid JSON:', error);\n}\n```\n\n## Library Dependencies\n\nThe provided code does not require any library dependencies to execute properly.\n\n## References\n\n- [OWASP: Code Injection](https://owasp.org/www-community/attacks/Code_Injection)\n- [OWASP: A1:2017-Injection](https://owasp.org/www-project-top-ten/2017/A1_2017-Injection)\n- [CWE-94: Improper Control of Generation of Code ('Code Injection')](https://cwe.mitre.org/data/definitions/94.html)"
+              },
+              "properties": {
+                "cwe": [
+                  {
+                    "id": "CWE-94",
+                    "url": "https://cwe.mitre.org/data/definitions/94.html"
+                  }
+                ],
+                "severity": "MEDIUM",
+                "kind": "FAIL",
+                "tags": [
+                  "CWE-94"
+                ]
+              }
+            },
+            {
+              "id": "d90ce3b5-cdf2-3bd5-9219-e3543bc14c53",
+              "name": "Potential ReDoS vulnerability due to RegExp() function called with `currentValue` argument in your application.",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\nA Regular Expression Denial of Service (ReDoS) vulnerability occurs when an application uses an inefficient regular expression to validate or manipulate user-controlled input. This can lead to a denial of service if the regular expression engine enters a catastrophic backtracking scenario, causing it to consume an excessive amount of CPU time.\n\nIn the provided code snippet, the `RegExp()` function is called with a `currentValue` argument, which could potentially lead to a ReDoS vulnerability if the `currentValue` is user-controlled and crafted in a way that triggers catastrophic backtracking.\n\n## Mitigation Advice\n\nTo mitigate this vulnerability, you should:\n\n1. Avoid using regular expressions if possible, especially for complex patterns and on large input strings.\n2. If you must use regular expressions, make sure they are efficient and cannot cause catastrophic backtracking. This often involves avoiding nested quantifiers and alternation with overlapping clauses.\n3. Limit the size of the input string that a regular expression can be applied to.\n4. Use a timeout for regular expression operations, to prevent them from consuming too much CPU time.\n\n## Source Code Fix Recommendation\n\nIn the provided code snippet, a potential fix would be to ensure that the `pattern` is a safe and efficient regular expression. If the `pattern` is user-controlled, you should validate and sanitize it before using it in the `RegExp()` function.\n\n```javascript\n// Ensure pattern is a safe and efficient regular expression\nlet safePattern = sanitizePattern(pattern);\nreturn value.replace(new RegExp(safePattern, 'gi'), '<strong>$1<\\/strong>');\n```\n\nThe `sanitizePattern()` function should validate and sanitize the `pattern` to ensure it cannot cause a ReDoS vulnerability. The implementation of this function will depend on your specific requirements and constraints.\n\n## Library Dependencies\n\nThe provided code snippet does not require any library dependencies to execute properly.\n\n## References\n\n- [OWASP ReDoS](https://owasp.org/www-community/attacks/Regular_expression_Denial_of_Service_-_ReDoS)\n- [CWE-400: Uncontrolled Resource Consumption](https://cwe.mitre.org/data/definitions/400.html)"
+              },
+              "properties": {
+                "cwe": [
+                  {
+                    "id": "CWE-400",
+                    "url": "https://cwe.mitre.org/data/definitions/400.html"
+                  }
+                ],
+                "severity": "MEDIUM",
+                "kind": "FAIL",
+                "tags": [
+                  "CWE-400"
+                ]
+              }
+            }
+          ],
           "language": "en-US",
           "contents": [
             "localizedData",
@@ -20,7 +219,323 @@
         }
       },
       "language": "en-US",
-      "results": [],
+      "results": [
+        {
+          "ruleId": "16db2978-8a51-3ac0-97cc-2f4fd73a2e11",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Prototype Pollution Vulnerability Detected"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "WebGoat/Resources/client-scripts/jquery-1.4.2.min.js",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 70,
+                  "startColumn": 252,
+                  "endLine": 70,
+                  "endColumn": 258,
+                  "snippet": {
+                    "text": "if(t){t=t[g];for(var y=false;t;){if(t.sizcache===l){y=m[t.sizset];break}if(t.nodeType===1&&!p){t.sizcache=l;t.sizset=q}if(t.nodeName.toLowerCase()===h){y=t;break}t=t[g]}m[q]=y}}}function d(g,h,l,m,q,p){q=0;for(var v=m.length;q<v;q++){var t=m[q];if(t){t=t[g];for(var y=false;t;){if(t.sizcache===l){y=m[t.sizset];break}if(t.nodeType===1){if(!p){t.sizcache=l;t.sizset=q}if(typeof h!==\"string\"){if(t===h){y=true;break}}else if(k.filter(h,[t]).length>0){y=t;break}}t=t[g]}m[q]=y}}}var f=/((?:\\((?:\\([^()]+\\)|[^()]+)+\\)|\\[(?:\\[[^[\\]]*\\]|['\"][^'\"]*['\"]|[^[\\]'\"]+)+\\]|\\\\.|[^ >+~,(\\[\\\\]+)+|[>+~])(\\s*,\\s*)?((?:.|\\r|\\n)*)/g,"
+                  }
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "73196adb2d7dc2f9617a00b2364613ad3f0a0c9a7ac75c7edf343751968dc6a9",
+            "glog-pfp-ruleFileCode/v1": "34ddf48707fb2ee16029cef41ac27ebd5af11d9e2081edc1254468f733f9202e"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "34ddf48707fb2ee16029cef41ac27ebd5af11d9e2081edc1254468f733f9202e"
+          },
+          "properties": {}
+        },
+        {
+          "ruleId": "06a2b8e7-0f15-3a27-a4b3-ef1098aed34c",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Prototype Pollution Vulnerability Detected"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "WebGoat/Resources/client-scripts/jquery-1.4.2.min.js",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 99,
+                  "startColumn": 451,
+                  "endLine": 99,
+                  "endColumn": 457,
+                  "snippet": {
+                    "text": "a.contentDocument||a.contentWindow.document:c.makeArray(a.childNodes)}},function(a,b){c.fn[a]=function(d,f){var e=c.map(this,b,d);eb.test(a)||(f=d);if(f&&typeof f===\"string\")e=c.filter(f,e);e=this.length>1?c.unique(e):e;if((this.length>1||gb.test(f))&&fb.test(a))e=e.reverse();return this.pushStack(e,a,R.call(arguments).join(\",\"))}});c.extend({filter:function(a,b,d){if(d)a=\":not(\"+a+\")\";return c.find.matches(a,b)},dir:function(a,b,d){var f=[];for(a=a[b];a&&a.nodeType!==9&&(d===w||a.nodeType!==1||!c(a).is(d));){a.nodeType==="
+                  }
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "da245cc1dd282ef65958b60d9340c228891ec538d88dbd9ee0f13ddae8d91637",
+            "glog-pfp-ruleFileCode/v1": "ab10aa3cb8b1cdd38f30372358dc92b2d8c37bcd32c5d68ed5627724e157a190"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "ab10aa3cb8b1cdd38f30372358dc92b2d8c37bcd32c5d68ed5627724e157a190"
+          },
+          "properties": {}
+        },
+        {
+          "ruleId": "0a72bba4-d6ef-322a-904d-81a32b8d18ef",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Prototype Pollution Vulnerability Detected"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "WebGoat/Resources/client-scripts/jquery-1.4.2.min.js",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 100,
+                  "startColumn": 14,
+                  "endLine": 100,
+                  "endColumn": 20,
+                  "snippet": {
+                    "text": "1&&f.push(a);a=a[b]}return f},nth:function(a,b,d){b=b||1;for(var f=0;a;a=a[d])if(a.nodeType===1&&++f===b)break;return a},sibling:function(a,b){for(var d=[];a;a=a.nextSibling)a.nodeType===1&&a!==b&&d.push(a);return d}});var Ja=/ jQuery\\d+=\"(?:\\d+|null)\"/g,V=/^\\s+/,Ka=/(<([\\w:]+)[^>]*?)\\/>/g,hb=/^(?:area|br|col|embed|hr|img|input|link|meta|param)$/i,La=/<([\\w:]+)/,ib=/<tbody/i,jb=/<|&#?\\w+;/,ta=/<script|<object|<embed|<option|<style/i,ua=/checked\\s*(?:[^=]|=\\s*.checked.)/i,Ma=function(a,b,d){return hb.test(d)?"
+                  }
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "f95470792a40fc6e30ff085d3238cb52511c536e2a359d8884e432a5867989e2",
+            "glog-pfp-ruleFileCode/v1": "fd95a530c691b6d3c962260043ff588a6af967e0b09ea1cd0b806a28eceb536d"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "fd95a530c691b6d3c962260043ff588a6af967e0b09ea1cd0b806a28eceb536d"
+          },
+          "properties": {}
+        },
+        {
+          "ruleId": "48ec6ae2-8495-36e6-91df-f8ed2d5fb27b",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "\"XSS Vulnerabilities from User-Controlled Data in Methods like `innerHTML`, `outerHTML`, or `document.write`\""
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "WebGoat/Resources/client-scripts/jquery-1.4.2.min.js",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 89,
+                  "startColumn": 238,
+                  "endLine": 89,
+                  "endColumn": 270,
+                  "snippet": {
+                    "text": "h.ownerDocument.createRange();l.setStart(g,0);l.setEnd(g,0);m.setStart(h,0);m.setEnd(h,0);g=l.compareBoundaryPoints(Range.START_TO_END,m);if(g===0)i=true;return g};(function(){var g=s.createElement(\"div\"),h=\"script\"+(new Date).getTime();g.innerHTML=\"<a name='\"+h+\"'/>\";var l=s.documentElement;l.insertBefore(g,l.firstChild);if(s.getElementById(h)){n.find.ID=function(m,q,p){if(typeof q.getElementById!==\"undefined\"&&!p)return(q=q.getElementById(m[1]))?q.id===m[1]||typeof q.getAttributeNode!==\"undefined\"&&"
+                  }
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "bd9586ba8e935ecb79a6c4be85fe404299ca7f1c9a80a94148f421b85c5ca168",
+            "glog-pfp-ruleFileCode/v1": "29c3b58555f72625b1acc2eb86611f1c45e634d3d3eb2e9037e573ea2955e397"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "29c3b58555f72625b1acc2eb86611f1c45e634d3d3eb2e9037e573ea2955e397"
+          },
+          "properties": {}
+        },
+        {
+          "ruleId": "4bda5f47-cdfa-3949-bcc5-2c7085afd3c2",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "\"XSS Vulnerabilities from User-Controlled Data in innerHTML, outerHTML, and document.write Methods\""
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "WebGoat/Resources/client-scripts/jquery-1.4.2.min.js",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 107,
+                  "startColumn": 268,
+                  "endLine": 107,
+                  "endColumn": 287,
+                  "snippet": {
+                    "text": "\"\"):null;else if(typeof a===\"string\"&&!ta.test(a)&&(c.support.leadingWhitespace||!V.test(a))&&!F[(La.exec(a)||[\"\",\"\"])[1].toLowerCase()]){a=a.replace(Ka,Ma);try{for(var b=0,d=this.length;b<d;b++)if(this[b].nodeType===1){c.cleanData(this[b].getElementsByTagName(\"*\"));this[b].innerHTML=a}}catch(f){this.empty().append(a)}}else c.isFunction(a)?this.each(function(e){var j=c(this),i=j.html();j.empty().append(function(){return a.call(this,e,i)})}):this.empty().append(a);return this},replaceWith:function(a){if(this[0]&&"
+                  }
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "f86e4b9d1b772e7bda8e22b3a550ee3962384ae59f82c8a76cdc1077a8cef40c",
+            "glog-pfp-ruleFileCode/v1": "767b47f10abd416c41da929dcf19ecc5433eda0bf6e0ae5811777842cc1eb3f2"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "767b47f10abd416c41da929dcf19ecc5433eda0bf6e0ae5811777842cc1eb3f2"
+          },
+          "properties": {}
+        },
+        {
+          "ruleId": "247aab2c-0fc5-3129-8b76-73e809e49c74",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Potential ReDoS vulnerability due to RegExp() being called with a `d` function argument. Consider using hardcoded regexes, input validation, or a regex checking/sanitization library like 'recheck'."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "WebGoat/Resources/client-scripts/jquery-ui-1.8.16.custom.min.js",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 330,
+                  "startColumn": 37,
+                  "endLine": 330,
+                  "endColumn": 85,
+                  "snippet": {
+                    "text": "\"\\\\$&\")},filter:function(a,b){var g=new RegExp(d.ui.autocomplete.escapeRegex(b),\"i\");return d.grep(a,function(c){return g.test(c.label||c.value||c)})}})})(jQuery);"
+                  }
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "d0f9df20665c4728084ed3b87d2d6918252213d52fc719cd37d919bd79cd8add",
+            "glog-pfp-ruleFileCode/v1": "7e602d30cbc8d5480e4af023d989faaf69b6ada24684f187b809f6ac17132fe5"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "7e602d30cbc8d5480e4af023d989faaf69b6ada24684f187b809f6ac17132fe5"
+          },
+          "properties": {}
+        },
+        {
+          "ruleId": "1732df8d-5d3d-38ff-ba0d-1c5460c0c486",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Potential Code Injection Vulnerability Detected through eval() Use"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "WebGoat/Resources/client-scripts/jquery-ui-1.8.16.custom.min.js",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 490,
+                  "startColumn": 189,
+                  "endLine": 490,
+                  "endColumn": 196,
+                  "snippet": {
+                    "text": "setDefaults:function(a){H(this._defaults,a||{});return this},_attachDatepicker:function(a,b){var c=null;for(var e in this._defaults){var f=a.getAttribute(\"date:\"+e);if(f){c=c||{};try{c[e]=eval(f)}catch(h){c[e]=f}}}e=a.nodeName.toLowerCase();f=e==\"div\"||e==\"span\";if(!a.id){this.uuid+=1;a.id=\"dp\"+this.uuid}var i=this._newInst(d(a),f);i.settings=d.extend({},b||{},c||{});if(e==\"input\")this._connectDatepicker(a,i);else f&&this._inlineDatepicker(a,i)},_newInst:function(a,b){return{id:a[0].id.replace(/([^A-Za-z0-9_-])/g,"
+                  }
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "2d1e8632d4dad13400e131f7993d6c28c443aae2f62c00ed1686b37e9831ecec",
+            "glog-pfp-ruleFileCode/v1": "40aba0a20df50f938c958c2cca4d5f5c643e5d2570d5c893c430da5f5f62dc84"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "40aba0a20df50f938c958c2cca4d5f5c643e5d2570d5c893c430da5f5f62dc84"
+          },
+          "properties": {}
+        },
+        {
+          "ruleId": "8747c260-7a81-3ea9-bcae-53f703eca111",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Potential Code Injection Vulnerability Detected through eval() Use"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "WebGoat/Resources/client-scripts/jquery.autocomplete.js",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 288,
+                  "startColumn": 20,
+                  "endLine": 288,
+                  "endColumn": 42,
+                  "snippet": {
+                    "text": "        response = eval('(' + text + ')');"
+                  }
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "c1a5e79aea7566540cebd1726b7e01315614181ac9c24d8a33a888d457bfdd00",
+            "glog-pfp-ruleFileCode/v1": "77ad709e0ed047bee4883e716caccbc669d372964cd3242900a44bde5c53db45"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "77ad709e0ed047bee4883e716caccbc669d372964cd3242900a44bde5c53db45"
+          },
+          "properties": {}
+        },
+        {
+          "ruleId": "d90ce3b5-cdf2-3bd5-9219-e3543bc14c53",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Potential ReDoS vulnerability due to RegExp() function called with `currentValue` argument in your application."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "WebGoat/Resources/client-scripts/jquery.autocomplete.js",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 20,
+                  "startColumn": 26,
+                  "endLine": 20,
+                  "endColumn": 51,
+                  "snippet": {
+                    "text": "    return value.replace(new RegExp(pattern, 'gi'), '<strong>$1<\\/strong>');"
+                  }
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "b506fea2a982548c2a2913b63ca94d34cb3eb4b1c23bfa3ad846fc9d7d42cb6e",
+            "glog-pfp-ruleFileCode/v1": "e9ca0ac0c2e4f87f1165ec451137288b4f1ec7e483866b0e5b7543571a8bc152"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "e9ca0ac0c2e4f87f1165ec451137288b4f1ec7e483866b0e5b7543571a8bc152"
+          },
+          "properties": {}
+        }
+      ],
       "newlineSequences": [
         "\r\n",
         "\n"
